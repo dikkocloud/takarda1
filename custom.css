@@ -1,0 +1,214 @@
+/* =========================================================
+   Takarda — custom.css
+   Hand styles that Tailwind utilities can't express:
+   tokens, the jagged "deckle-edge" motif, timeline thread,
+   scroll galleries, badges, and motion.
+   ========================================================= */
+
+:root{
+  --brick:   #C6281B;
+  --brick-2: #9E1F14;
+  --clay:    #E2792A;
+  --gold:    #F0B23A;
+  --olive:   #7C8C2E;
+  --olive-2: #5E6C1E;
+  --cream:   #F7EFDD;
+  --parchment: #EFE1C2;
+  --ink:     #241407;
+  --ink-70:  rgba(36,20,7,.7);
+  --ink-45:  rgba(36,20,7,.45);
+}
+
+html{ scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *,*::before,*::after{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
+}
+
+body{
+  background:var(--cream);
+  color:var(--ink);
+  font-family:'Inter',ui-sans-serif,system-ui,sans-serif;
+}
+
+.font-display{ font-family:'Lora',ui-serif,Georgia,serif; }
+.font-mark{ font-family:'Caveat',cursive; }
+
+::selection{ background:var(--gold); color:var(--ink); }
+
+/* Visible keyboard focus everywhere */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, summary:focus-visible{
+  outline:3px solid var(--brick);
+  outline-offset:3px;
+  border-radius:2px;
+}
+
+/* -----------------------------------------------------------
+   Signature motif: the deckle / torn-paper edge.
+   Used once per page, sparingly, echoing the wordmark's
+   irregular silhouette and the idea of a hand-torn sheet
+   of takarda (paper).
+   ----------------------------------------------------------- */
+.deckle-bottom{
+  clip-path: polygon(
+    0% 0%, 100% 0%, 100% 92%,
+    96% 100%, 90% 90%, 84% 100%, 78% 91%, 72% 100%,
+    66% 90%, 60% 100%, 54% 92%, 48% 100%, 42% 91%,
+    36% 100%, 30% 90%, 24% 100%, 18% 91%, 12% 100%,
+    6% 90%, 0% 100%
+  );
+}
+.deckle-top{
+  clip-path: polygon(
+    0% 8%, 6% 0%, 12% 9%, 18% 0%, 24% 9%, 30% 0%, 36% 9%,
+    42% 0%, 48% 9%, 54% 0%, 60% 9%, 66% 0%, 72% 9%,
+    78% 0%, 84% 9%, 90% 0%, 96% 9%, 100% 0%,
+    100% 100%, 0% 100%
+  );
+}
+
+/* Torn-edge divider strip (thin, decorative) */
+.torn-strip{
+  height:18px;
+  background:var(--cream);
+  clip-path: polygon(
+    0% 100%, 100% 100%, 100% 0%,
+    94% 60%, 88% 10%, 82% 65%, 76% 5%, 70% 60%,
+    64% 15%, 58% 55%, 52% 0%, 46% 60%, 40% 10%,
+    34% 65%, 28% 5%, 22% 60%, 16% 15%, 10% 55%, 4% 0%, 0% 60%
+  );
+}
+
+/* -----------------------------------------------------------
+   Sticker badge — echoes the hand-lettered "Takarda" stickers
+   in the brand board. Used sparingly as a section accent.
+   ----------------------------------------------------------- */
+.badge-sticker{
+  display:inline-flex;
+  align-items:center;
+  padding:.35rem 1rem .45rem;
+  clip-path: polygon(
+    3% 20%, 10% 2%, 22% 12%, 35% 0%, 48% 10%, 62% 1%, 75% 11%,
+    88% 2%, 97% 18%, 100% 40%, 94% 55%, 100% 72%, 90% 88%,
+    78% 98%, 65% 90%, 52% 100%, 38% 91%, 25% 100%, 12% 90%,
+    2% 78%, 6% 55%, 0% 38%
+  );
+  transform:rotate(-2deg);
+  font-family:'Caveat',cursive;
+  font-weight:700;
+  letter-spacing:.02em;
+}
+
+/* -----------------------------------------------------------
+   Past / Present / Future thread — a stitched binding line
+   connecting the three eras, like thread through paper.
+   ----------------------------------------------------------- */
+.thread-line{
+  background-image: repeating-linear-gradient(
+    to right, var(--ink-45) 0 10px, transparent 10px 20px
+  );
+  height:2px;
+}
+@media (min-width: 768px){
+  .thread-line-v{
+    background-image: repeating-linear-gradient(
+      to bottom, var(--ink-45) 0 10px, transparent 10px 20px
+    );
+    width:2px;
+  }
+}
+
+/* -----------------------------------------------------------
+   Impact gallery — horizontal scroll-snap
+   ----------------------------------------------------------- */
+.impact-scroller{
+  display:flex;
+  gap:1.25rem;
+  overflow-x:auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom:1rem;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--brick) var(--parchment);
+}
+.impact-scroller::-webkit-scrollbar{ height:8px; }
+.impact-scroller::-webkit-scrollbar-track{ background:var(--parchment); border-radius:99px; }
+.impact-scroller::-webkit-scrollbar-thumb{ background:var(--brick); border-radius:99px; }
+.impact-card{
+  scroll-snap-align:start;
+  flex:0 0 auto;
+  width:78%;
+}
+@media (min-width:640px){ .impact-card{ width:46%; } }
+@media (min-width:1024px){ .impact-card{ width:29%; } }
+
+/* Placeholder tile for images the client will supply later */
+.photo-placeholder{
+  background:
+    repeating-linear-gradient(135deg, rgba(36,20,7,.06) 0 12px, transparent 12px 24px),
+    var(--parchment);
+  border:1.5px dashed var(--ink-45);
+}
+
+/* -----------------------------------------------------------
+   Reveal-on-scroll — one quiet, orchestrated entrance,
+   not per-card hover choreography.
+   ----------------------------------------------------------- */
+.reveal{
+  opacity:0;
+  transform:translateY(14px);
+  transition:opacity .7s ease, transform .7s ease;
+}
+.reveal.is-visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* Nav underline that draws in on hover/focus */
+.nav-link{ position:relative; }
+.nav-link::after{
+  content:"";
+  position:absolute; left:0; right:100%; bottom:-3px;
+  height:2px; background:var(--brick);
+  transition:right .25s ease;
+}
+.nav-link:hover::after,
+.nav-link:focus-visible::after,
+.nav-link[aria-current="page"]::after{ right:0; }
+
+/* Buttons */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+  font-weight:600; border-radius:.35rem;
+  padding:.85rem 1.6rem;
+  transition:transform .15s ease, box-shadow .15s ease, background-color .15s ease;
+}
+.btn:active{ transform:translateY(1px); }
+.btn-brick{ background:var(--brick); color:var(--cream); }
+.btn-brick:hover{ background:var(--brick-2); }
+.btn-outline{ border:1.5px solid var(--ink); color:var(--ink); }
+.btn-outline:hover{ background:var(--ink); color:var(--cream); }
+.btn-cream{ background:var(--cream); color:var(--brick); }
+.btn-cream:hover{ background:#fff; }
+
+/* Mobile menu */
+#mobile-menu{ transition:max-height .3s ease, opacity .25s ease; overflow:hidden; }
+#mobile-menu[data-open="false"]{ max-height:0; opacity:0; }
+#mobile-menu[data-open="true"]{ max-height:480px; opacity:1; }
+
+/* Category chip (blog filter) */
+.chip{
+  border:1.5px solid var(--ink); color:var(--ink);
+  padding:.4rem 1rem; border-radius:99px; font-size:.875rem; font-weight:600;
+  transition:background-color .15s ease, color .15s ease;
+}
+.chip[aria-pressed="true"]{ background:var(--ink); color:var(--cream); }
+
+/* Accordion caret rotation for <details> */
+details > summary{ list-style:none; cursor:pointer; }
+details > summary::-webkit-details-marker{ display:none; }
+details[open] .caret{ transform:rotate(180deg); }
+.caret{ transition:transform .2s ease; }
+
+/* Line-length comfort for long-form text */
+.prose-takarda{ max-width:62ch; }
