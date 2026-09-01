@@ -1,1 +1,0 @@
-# takarda1
