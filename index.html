@@ -30,7 +30,7 @@
           clay: '#E2792A',
           gold: '#F0B23A',
           olive: { DEFAULT: '#7C8C2E', dark: '#5E6C1E' },
-          cream: '#F7EFDD',
+          cream: '#FFFFFF',
           parchment: '#EFE1C2',
           ink: '#241407',
         },
@@ -66,11 +66,15 @@
     </nav>
 
     <div class="hidden md:flex items-center gap-3">
-      <a href="/index.html#community" class="btn btn-outline text-sm py-2.5 px-5">Join our community</a>
+      <!-- Replace WHATSAPP_URL below (also in hero, #community section, and both footers) with your real WhatsApp invite link -->
+      <a href="https://chat.whatsapp.com/REPLACE_WITH_YOUR_INVITE_CODE" target="_blank" rel="noopener noreferrer" class="btn btn-outline text-sm py-2.5 px-5">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.6-1.28 1.18-1.77 1.24-.45.06-.98.24-3.3-.7-2.78-1.14-4.58-3.98-4.72-4.17-.14-.19-1.13-1.5-1.13-2.86 0-1.36.72-2.02.97-2.3.25-.27.55-.34.73-.34.18 0 .37 0 .53.01.17.01.4-.06.62.48.22.55.76 1.9.83 2.04.07.14.11.3.02.49-.09.19-.14.3-.28.46-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.16.27.71 1.19 1.53 1.93 1.05.95 1.94 1.25 2.2 1.4.27.14.43.12.6-.07.16-.19.68-.79.86-1.06.18-.27.36-.22.6-.13.24.09 1.55.74 1.81.87.27.14.44.2.5.31.06.12.06.68-.16 1.28z"/></svg>
+        Join our community
+      </a>
       <a href="/donate.html" class="btn btn-brick text-sm py-2.5 px-5">Donate</a>
     </div>
 
-    <button id="nav-toggle" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden inline-flex flex-col justify-center gap-1.5 w-10 h-10" aria-label="Toggle menu">
+    <button id="nav-toggle" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden inline-flex flex-col justify-center gap-1.5 w-11 h-11 -mr-1" aria-label="Toggle menu">
       <span class="block h-0.5 w-6 bg-ink"></span>
       <span class="block h-0.5 w-6 bg-ink"></span>
       <span class="block h-0.5 w-6 bg-ink"></span>
@@ -93,7 +97,7 @@
 
   <!-- ========================= HERO ========================= -->
   <section class="relative">
-    <div class="relative h-[86vh] min-h-[560px] deckle-bottom overflow-hidden">
+    <div class="relative h-[92vh] sm:h-[86vh] min-h-[480px] sm:min-h-[560px] deckle-bottom overflow-hidden">
       <img
         src="https://images.unsplash.com/photo-1585540083814-ea6ee8af9e4f?auto=format&fit=crop&w=1800&q=70"
         alt="A market trader in northern Nigeria, mid-morning light across a busy street stall"
@@ -110,7 +114,10 @@
           Takarda is a book club and reading community rooted in Northern Nigeria — bringing together the region's oral past, its present-day readers, and the libraries we're building for the next generation.
         </p>
         <div class="reveal mt-9 flex flex-wrap gap-4">
-          <a href="#community" class="btn btn-brick">Join our community</a>
+          <a href="https://chat.whatsapp.com/REPLACE_WITH_YOUR_INVITE_CODE" target="_blank" rel="noopener noreferrer" class="btn btn-brick">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.6-1.28 1.18-1.77 1.24-.45.06-.98.24-3.3-.7-2.78-1.14-4.58-3.98-4.72-4.17-.14-.19-1.13-1.5-1.13-2.86 0-1.36.72-2.02.97-2.3.25-.27.55-.34.73-.34.18 0 .37 0 .53.01.17.01.4-.06.62.48.22.55.76 1.9.83 2.04.07.14.11.3.02.49-.09.19-.14.3-.28.46-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.16.27.71 1.19 1.53 1.93 1.05.95 1.94 1.25 2.2 1.4.27.14.43.12.6-.07.16-.19.68-.79.86-1.06.18-.27.36-.22.6-.13.24.09 1.55.74 1.81.87.27.14.44.2.5.31.06.12.06.68-.16 1.28z"/></svg>
+            Join our community
+          </a>
           <a href="/blog.html" class="btn btn-cream">Read the blog</a>
         </div>
       </div>
@@ -258,21 +265,35 @@
   <section id="community" class="bg-brick py-20 sm:py-28 scroll-mt-20">
     <div class="max-w-2xl mx-auto px-5 sm:px-8 text-center">
       <h2 class="reveal font-display text-3xl sm:text-4xl text-cream">Join our community</h2>
-      <p class="reveal mt-4 text-cream/85 text-[17px]">Get the monthly reading list, meet-up dates, and first word when a new reading corner opens. No spam — just paper.</p>
+      <p class="reveal mt-4 text-cream/85 text-[17px]">The conversation happens on WhatsApp — meet-up reminders, book picks, and first word when a new reading corner opens. Tap below to join.</p>
 
-      <form id="join-form" class="reveal mt-9 flex flex-col sm:flex-row gap-3 justify-center" novalidate>
-        <label for="join-email" class="sr-only">Email address</label>
-        <input
-          id="join-email"
-          type="email"
-          required
-          placeholder="you@example.com"
-          class="w-full sm:w-80 rounded-md px-4 py-3.5 text-ink placeholder:text-ink/50 border-0 focus:ring-2 focus:ring-gold"
-        />
-        <button type="submit" class="btn btn-cream whitespace-nowrap">Join our community</button>
-      </form>
-      <p id="join-status" class="reveal hidden mt-4 text-cream font-medium"></p>
-      <p class="reveal mt-3 text-cream/60 text-sm">This form is front-end only for now — connect it to your email provider before launch. See README.</p>
+      <!-- Replace WHATSAPP_URL with your real WhatsApp group invite link (WhatsApp → group → Invite via link) -->
+      <a
+        href="https://chat.whatsapp.com/REPLACE_WITH_YOUR_INVITE_CODE"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="reveal btn btn-whatsapp mt-9 text-lg px-9 py-4"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.6-1.28 1.18-1.77 1.24-.45.06-.98.24-3.3-.7-2.78-1.14-4.58-3.98-4.72-4.17-.14-.19-1.13-1.5-1.13-2.86 0-1.36.72-2.02.97-2.3.25-.27.55-.34.73-.34.18 0 .37 0 .53.01.17.01.4-.06.62.48.22.55.76 1.9.83 2.04.07.14.11.3.02.49-.09.19-.14.3-.28.46-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.16.27.71 1.19 1.53 1.93 1.05.95 1.94 1.25 2.2 1.4.27.14.43.12.6-.07.16-.19.68-.79.86-1.06.18-.27.36-.22.6-.13.24.09 1.55.74 1.81.87.27.14.44.2.5.31.06.12.06.68-.16 1.28z"/></svg>
+        Join our WhatsApp community
+      </a>
+
+      <div class="reveal mt-10 pt-8 border-t border-cream/20">
+        <p class="text-cream/85 text-[15px] mb-4">Prefer email? Get the monthly reading list instead.</p>
+        <form id="join-form" class="flex flex-col sm:flex-row gap-3 justify-center" novalidate>
+          <label for="join-email" class="sr-only">Email address</label>
+          <input
+            id="join-email"
+            type="email"
+            required
+            placeholder="you@example.com"
+            class="w-full sm:w-72 rounded-md px-4 py-3 text-ink placeholder:text-ink/50 border-0 focus:ring-2 focus:ring-gold"
+          />
+          <button type="submit" class="btn btn-outline !border-cream !text-cream hover:!bg-cream hover:!text-brick whitespace-nowrap">Get the reading list</button>
+        </form>
+        <p id="join-status" class="hidden mt-4 text-cream font-medium"></p>
+        <p class="mt-3 text-cream/60 text-sm">This form is front-end only for now — connect it to your email provider before launch. See README.</p>
+      </div>
     </div>
   </section>
 
@@ -312,7 +333,7 @@
         <li><a href="/index.html" class="hover:text-cream">Home</a></li>
         <li><a href="/index.html#about" class="hover:text-cream">About</a></li>
         <li><a href="/blog.html" class="hover:text-cream">Blog</a></li>
-        <li><a href="/index.html#community" class="hover:text-cream">Join our community</a></li>
+        <li><a href="https://chat.whatsapp.com/REPLACE_WITH_YOUR_INVITE_CODE" target="_blank" rel="noopener noreferrer" class="hover:text-cream">Join our community</a></li>
         <li><a href="/donate.html" class="hover:text-cream">Eco-Reading Project</a></li>
       </ul>
     </div>
