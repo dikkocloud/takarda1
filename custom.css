@@ -12,7 +12,7 @@
   --gold:    #F0B23A;
   --olive:   #7C8C2E;
   --olive-2: #5E6C1E;
-  --cream:   #F7EFDD;
+  --cream:   #FFFFFF;
   --parchment: #EFE1C2;
   --ink:     #241407;
   --ink-70:  rgba(36,20,7,.7);
@@ -20,6 +20,12 @@
 }
 
 html{ scroll-behavior:smooth; }
+html, body{
+  overflow-x:hidden; /* safety net: rotated badge-stickers and absolute
+                         accents shouldn't be able to force a horizontal
+                         scrollbar on narrow viewports */
+  max-width:100%;
+}
 @media (prefers-reduced-motion: reduce){
   html{ scroll-behavior:auto; }
   *,*::before,*::after{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
@@ -176,20 +182,37 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .nav-link:focus-visible::after,
 .nav-link[aria-current="page"]::after{ right:0; }
 
-/* Buttons */
+/* Buttons
+   Every variant shares the same hover language: a small lift,
+   a soft shadow that grows in, and a color shift — so hover
+   always reads clearly regardless of which button it is. */
 .btn{
-  display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+  display:inline-flex; align-items:center; justify-content:center; gap:.55rem;
   font-weight:600; border-radius:.35rem;
   padding:.85rem 1.6rem;
-  transition:transform .15s ease, box-shadow .15s ease, background-color .15s ease;
+  border:1.5px solid transparent;
+  box-shadow:0 0 0 0 rgba(36,20,7,0);
+  transition:transform .18s ease, box-shadow .18s ease, background-color .18s ease, color .18s ease, border-color .18s ease;
 }
-.btn:active{ transform:translateY(1px); }
-.btn-brick{ background:var(--brick); color:var(--cream); }
-.btn-brick:hover{ background:var(--brick-2); }
-.btn-outline{ border:1.5px solid var(--ink); color:var(--ink); }
-.btn-outline:hover{ background:var(--ink); color:var(--cream); }
-.btn-cream{ background:var(--cream); color:var(--brick); }
-.btn-cream:hover{ background:#fff; }
+.btn:hover{
+  transform:translateY(-2px);
+}
+.btn:active{
+  transform:translateY(0);
+  box-shadow:none !important;
+}
+
+.btn-brick{ background:var(--brick); color:var(--cream); border-color:var(--brick); }
+.btn-brick:hover{ background:var(--brick-2); border-color:var(--brick-2); box-shadow:0 10px 22px -8px rgba(158,31,20,.55); }
+
+.btn-outline{ border-color:var(--ink); color:var(--ink); background:transparent; }
+.btn-outline:hover{ background:var(--ink); color:var(--cream); border-color:var(--ink); box-shadow:0 10px 22px -8px rgba(36,20,7,.35); }
+
+.btn-cream{ background:var(--cream); color:var(--brick); border-color:var(--cream); }
+.btn-cream:hover{ background:#fff; box-shadow:0 10px 22px -8px rgba(36,20,7,.35); }
+
+.btn-whatsapp{ background:#25D366; color:#fff; border-color:#25D366; }
+.btn-whatsapp:hover{ background:#1DA851; border-color:#1DA851; box-shadow:0 10px 22px -8px rgba(29,168,81,.55); }
 
 /* Mobile menu */
 #mobile-menu{ transition:max-height .3s ease, opacity .25s ease; overflow:hidden; }
