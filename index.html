@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Takarda — A book club connecting past, present and future</title>
+<meta name="description" content="Takarda is a Northern Nigerian book club and reading community linking yesterday's stories to today's conversations and tomorrow's readers, through gatherings, a growing library, and the Takarda Eco-Reading Project." />
+
+<!-- Open Graph -->
+<meta property="og:title" content="Takarda — A book club connecting past, present and future" />
+<meta property="og:description" content="Join a reading community rooted in Northern Nigeria, growing a library for the future." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="/assets/logo-1200.png" />
+
+<link rel="icon" type="image/png" href="/assets/favicon.png" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
+
+<!-- Tailwind (CDN build — see README for the compiled-CSS path if you'd rather not use the CDN) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brick: { DEFAULT: '#C6281B', dark: '#9E1F14' },
+          clay: '#E2792A',
+          gold: '#F0B23A',
+          olive: { DEFAULT: '#7C8C2E', dark: '#5E6C1E' },
+          cream: '#F7EFDD',
+          parchment: '#EFE1C2',
+          ink: '#241407',
+        },
+        fontFamily: {
+          display: ['Lora', 'ui-serif', 'Georgia', 'serif'],
+          sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          mark: ['Caveat', 'cursive'],
+        },
+      },
+    },
+  };
+</script>
+<link rel="stylesheet" href="/css/custom.css" />
+</head>
+<body class="font-sans text-ink bg-cream antialiased">
+
+<!-- Skip link -->
+<a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-3 focus:left-3 focus:bg-ink focus:text-cream focus:px-4 focus:py-2 focus:rounded">Skip to content</a>
+
+<!-- ========================= NAV ========================= -->
+<header class="sticky top-0 z-40 bg-cream/95 backdrop-blur border-b border-ink/10">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 flex items-center justify-between h-20">
+    <a href="/index.html" class="flex items-center gap-3">
+      <img src="/assets/logo-300.png" alt="Takarda" class="h-11 w-auto" />
+    </a>
+
+    <nav class="hidden md:flex items-center gap-8 text-[15px] font-medium">
+      <a href="/index.html" aria-current="page" class="nav-link">Home</a>
+      <a href="/index.html#about" class="nav-link">About</a>
+      <a href="/blog.html" class="nav-link">Blog</a>
+      <a href="/index.html#community" class="nav-link">Community</a>
+      <a href="/donate.html" class="nav-link">Eco-Reading Project</a>
+    </nav>
+
+    <div class="hidden md:flex items-center gap-3">
+      <a href="/index.html#community" class="btn btn-outline text-sm py-2.5 px-5">Join our community</a>
+      <a href="/donate.html" class="btn btn-brick text-sm py-2.5 px-5">Donate</a>
+    </div>
+
+    <button id="nav-toggle" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden inline-flex flex-col justify-center gap-1.5 w-10 h-10" aria-label="Toggle menu">
+      <span class="block h-0.5 w-6 bg-ink"></span>
+      <span class="block h-0.5 w-6 bg-ink"></span>
+      <span class="block h-0.5 w-6 bg-ink"></span>
+    </button>
+  </div>
+
+  <div id="mobile-menu" data-open="false" class="md:hidden border-t border-ink/10">
+    <nav class="max-w-6xl mx-auto px-5 py-4 flex flex-col gap-4 text-base font-medium">
+      <a href="/index.html">Home</a>
+      <a href="/index.html#about">About</a>
+      <a href="/blog.html">Blog</a>
+      <a href="/index.html#community">Community</a>
+      <a href="/donate.html">Eco-Reading Project</a>
+      <a href="/donate.html" class="btn btn-brick w-full mt-1">Donate</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ========================= HERO ========================= -->
+  <section class="relative">
+    <div class="relative h-[86vh] min-h-[560px] deckle-bottom overflow-hidden">
+      <img
+        src="https://images.unsplash.com/photo-1585540083814-ea6ee8af9e4f?auto=format&fit=crop&w=1800&q=70"
+        alt="A market trader in northern Nigeria, mid-morning light across a busy street stall"
+        class="absolute inset-0 w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/35 to-ink/10"></div>
+
+      <div class="relative h-full max-w-6xl mx-auto px-5 sm:px-8 flex flex-col justify-end pb-24 sm:pb-28">
+        <span class="badge-sticker bg-gold text-ink w-fit mb-6 text-lg reveal">est. in the north</span>
+        <h1 class="reveal font-display text-4xl sm:text-6xl lg:text-7xl leading-[1.05] text-cream max-w-3xl">
+          Stories carried from yesterday, read today, planted for tomorrow.
+        </h1>
+        <p class="reveal prose-takarda mt-6 text-cream/90 text-lg sm:text-xl">
+          Takarda is a book club and reading community rooted in Northern Nigeria — bringing together the region's oral past, its present-day readers, and the libraries we're building for the next generation.
+        </p>
+        <div class="reveal mt-9 flex flex-wrap gap-4">
+          <a href="#community" class="btn btn-brick">Join our community</a>
+          <a href="/blog.html" class="btn btn-cream">Read the blog</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= MEANING / MISSION STRIP ========================= -->
+  <section class="max-w-3xl mx-auto px-5 sm:px-8 py-20 sm:py-28 text-center">
+    <p class="reveal font-mark text-3xl text-clay mb-3">takarda (n.) — Hausa for "paper"</p>
+    <h2 class="reveal font-display text-2xl sm:text-3xl leading-snug">
+      A club built on the idea that a page is never just one moment — it's a thread from the storyteller who came before, through the reader holding it now, to the reader who hasn't been born yet.
+    </h2>
+    <p class="reveal mt-6 text-ink-70 text-[17px]">
+      Every month, we gather to read, argue gently about endings, and trade the books that shaped us. Every book we finish moves on — to a neighbour, a cousin, a village library — so nothing we read stays still for long.
+    </p>
+  </section>
+
+  <!-- ========================= PAST / PRESENT / FUTURE ========================= -->
+  <section class="bg-parchment py-20 sm:py-28">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
+      <div class="max-w-2xl reveal">
+        <span class="badge-sticker bg-olive text-cream mb-5">how we hold time</span>
+        <h2 class="font-display text-3xl sm:text-4xl">Three eras, one shelf</h2>
+        <p class="mt-4 text-ink-70 text-[17px]">Takarda was built around a simple structure — everything we do sits in one of three places on the timeline.</p>
+      </div>
+
+      <div class="mt-14 grid md:grid-cols-3 gap-10 md:gap-0 relative">
+        <div class="hidden md:block absolute top-8 left-0 right-0 thread-line"></div>
+
+        <article class="reveal relative md:pr-8">
+          <div class="w-4 h-4 rounded-full bg-brick hidden md:block mb-4 relative z-10 ring-4 ring-parchment"></div>
+          <h3 class="font-display text-2xl mb-3">Past</h3>
+          <p class="text-ink-70">The griots, the Ajami manuscripts, the folktales told over pounded millet — we read northern and West African classics alongside oral histories collected from elders in our own community, so the archive stays alive rather than sealed in a shelf.</p>
+        </article>
+
+        <article class="reveal relative md:px-8 md:border-l md:border-r md:border-ink/10">
+          <div class="w-4 h-4 rounded-full bg-clay hidden md:block mb-4 relative z-10 ring-4 ring-parchment"></div>
+          <h3 class="font-display text-2xl mb-3">Present</h3>
+          <p class="text-ink-70">Monthly meetups, rotating between homes, courtyards and the occasional bookshop. We read contemporary Nigerian and African fiction, hold open-mic reading nights, and keep a running, arguable list of what's worth your evening.</p>
+        </article>
+
+        <article class="reveal relative md:pl-8">
+          <div class="w-4 h-4 rounded-full bg-olive hidden md:block mb-4 relative z-10 ring-4 ring-parchment"></div>
+          <h3 class="font-display text-2xl mb-3">Future</h3>
+          <p class="text-ink-70">Through the Takarda Eco-Reading Project, every book we circulate funds a reading corner or a tree planted in its honour — building the libraries and the shade the next generation of readers will sit under.</p>
+          <a href="/donate.html" class="inline-block mt-4 text-brick font-semibold underline underline-offset-4 decoration-2">See the project →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= IMPACT GALLERY ========================= -->
+  <section class="py-20 sm:py-28">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
+      <div class="flex flex-wrap items-end justify-between gap-6 reveal">
+        <div class="max-w-xl">
+          <span class="badge-sticker bg-clay text-cream mb-5">in pictures</span>
+          <h2 class="font-display text-3xl sm:text-4xl">Moments from the club</h2>
+          <p class="mt-4 text-ink-70 text-[17px]">A running scrapbook of meet-ups, book swaps and reading-corner builds. Scroll sideways to look through it.</p>
+        </div>
+        <div class="flex gap-3">
+          <button data-scroll="prev" aria-label="Scroll gallery left" class="w-11 h-11 rounded-full border border-ink/30 grid place-items-center hover:bg-ink hover:text-cream transition-colors">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button data-scroll="next" aria-label="Scroll gallery right" class="w-11 h-11 rounded-full border border-ink/30 grid place-items-center hover:bg-ink hover:text-cream transition-colors">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div data-scroller class="mt-10 reveal">
+        <div class="impact-scroller">
+          <!-- 5 impact photo slots — swap the photo-placeholder div for an <img> when photos are supplied -->
+          <figure class="impact-card">
+            <div class="photo-placeholder aspect-[4/5] rounded-lg flex items-center justify-center p-6 text-center">
+              <span class="text-ink-70 text-sm">Impact photo 1<br />— your image here</span>
+            </div>
+            <figcaption class="mt-3 text-sm text-ink-70">Monthly gathering, reading circle</figcaption>
+          </figure>
+          <figure class="impact-card">
+            <div class="photo-placeholder aspect-[4/5] rounded-lg flex items-center justify-center p-6 text-center">
+              <span class="text-ink-70 text-sm">Impact photo 2<br />— your image here</span>
+            </div>
+            <figcaption class="mt-3 text-sm text-ink-70">Book swap table</figcaption>
+          </figure>
+          <figure class="impact-card">
+            <div class="photo-placeholder aspect-[4/5] rounded-lg flex items-center justify-center p-6 text-center">
+              <span class="text-ink-70 text-sm">Impact photo 3<br />— your image here</span>
+            </div>
+            <figcaption class="mt-3 text-sm text-ink-70">Community reading corner</figcaption>
+          </figure>
+          <figure class="impact-card">
+            <div class="photo-placeholder aspect-[4/5] rounded-lg flex items-center justify-center p-6 text-center">
+              <span class="text-ink-70 text-sm">Impact photo 4<br />— your image here</span>
+            </div>
+            <figcaption class="mt-3 text-sm text-ink-70">Eco-Reading tree planting</figcaption>
+          </figure>
+          <figure class="impact-card">
+            <div class="photo-placeholder aspect-[4/5] rounded-lg flex items-center justify-center p-6 text-center">
+              <span class="text-ink-70 text-sm">Impact photo 5<br />— your image here</span>
+            </div>
+            <figcaption class="mt-3 text-sm text-ink-70">Open-mic reading night</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= ABOUT (on home page) ========================= -->
+  <section id="about" class="bg-ink text-cream py-20 sm:py-28 scroll-mt-20">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
+      <div class="max-w-2xl reveal">
+        <span class="badge-sticker bg-gold text-ink mb-5">who's behind takarda</span>
+        <h2 class="font-display text-3xl sm:text-4xl">Two founders, one strategist, and a growing club</h2>
+        <p class="mt-4 text-cream/75 text-[17px]">Takarda started as two friends trading paperbacks after Jumu'ah prayers. It's since grown into a standing monthly club and a small team keeping the paperwork — and the storytelling — moving.</p>
+      </div>
+
+      <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Team card — replace the initials circle with a real photo (<img>) when available -->
+        <article class="reveal bg-cream/5 border border-cream/15 rounded-lg p-7">
+          <div class="w-16 h-16 rounded-full bg-brick grid place-items-center font-display text-xl mb-5">AB</div>
+          <h3 class="font-display text-xl">Amina Bello</h3>
+          <p class="text-clay text-sm font-semibold mt-1 mb-3">Co-Founder</p>
+          <p class="text-cream/70 text-[15px]">Started the club's first meeting on her verandah in 2021. Keeps the reading list honest and the meetings on time.</p>
+        </article>
+
+        <article class="reveal bg-cream/5 border border-cream/15 rounded-lg p-7">
+          <div class="w-16 h-16 rounded-full bg-olive grid place-items-center font-display text-xl mb-5">YD</div>
+          <h3 class="font-display text-xl">Yusuf Danladi</h3>
+          <p class="text-clay text-sm font-semibold mt-1 mb-3">Co-Founder</p>
+          <p class="text-cream/70 text-[15px]">Built the first book-swap ledger and now runs the Eco-Reading Project's community partnerships.</p>
+        </article>
+
+        <article class="reveal bg-cream/5 border border-cream/15 rounded-lg p-7 sm:col-span-2 lg:col-span-1">
+          <div class="w-16 h-16 rounded-full bg-gold grid place-items-center font-display text-xl mb-5 text-ink">ZI</div>
+          <h3 class="font-display text-xl">Zainab Ibrahim</h3>
+          <p class="text-clay text-sm font-semibold mt-1 mb-3">Strategic Communications Lead</p>
+          <p class="text-cream/70 text-[15px]">Shapes how Takarda tells its own story — from the blog to the partnerships that fund each reading corner.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= COMMUNITY JOIN ========================= -->
+  <section id="community" class="bg-brick py-20 sm:py-28 scroll-mt-20">
+    <div class="max-w-2xl mx-auto px-5 sm:px-8 text-center">
+      <h2 class="reveal font-display text-3xl sm:text-4xl text-cream">Join our community</h2>
+      <p class="reveal mt-4 text-cream/85 text-[17px]">Get the monthly reading list, meet-up dates, and first word when a new reading corner opens. No spam — just paper.</p>
+
+      <form id="join-form" class="reveal mt-9 flex flex-col sm:flex-row gap-3 justify-center" novalidate>
+        <label for="join-email" class="sr-only">Email address</label>
+        <input
+          id="join-email"
+          type="email"
+          required
+          placeholder="you@example.com"
+          class="w-full sm:w-80 rounded-md px-4 py-3.5 text-ink placeholder:text-ink/50 border-0 focus:ring-2 focus:ring-gold"
+        />
+        <button type="submit" class="btn btn-cream whitespace-nowrap">Join our community</button>
+      </form>
+      <p id="join-status" class="reveal hidden mt-4 text-cream font-medium"></p>
+      <p class="reveal mt-3 text-cream/60 text-sm">This form is front-end only for now — connect it to your email provider before launch. See README.</p>
+    </div>
+  </section>
+
+  <!-- ========================= ECO-READING TEASER ========================= -->
+  <section class="py-20 sm:py-28">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-12 items-center">
+      <div class="reveal order-2 lg:order-1">
+        <span class="badge-sticker bg-olive text-cream mb-5">for the future</span>
+        <h2 class="font-display text-3xl sm:text-4xl leading-tight">The Takarda Eco-Reading Project</h2>
+        <p class="mt-5 text-ink-70 text-[17px]">Takarda means paper — and paper starts as a tree. For every reading corner we open, we plant trees in the same community, so the villages lending us their afternoons get shade and timber back in return. Your donation funds books, shelving, and seedlings in one line item.</p>
+        <a href="/donate.html" class="btn btn-brick mt-8">Support the Eco-Reading Project</a>
+      </div>
+      <div class="reveal order-1 lg:order-2 relative">
+        <img
+          src="https://images.unsplash.com/photo-1734255026082-82fdc81991f0?auto=format&fit=crop&w=1200&q=70"
+          alt="Community members gathered around a table of produce at a Nigerian market"
+          class="rounded-lg w-full aspect-[4/5] object-cover"
+        />
+        <div class="badge-sticker bg-gold text-ink absolute -bottom-5 -left-5 text-lg hidden sm:inline-flex">book ↦ tree</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ========================= FOOTER ========================= -->
+<footer class="bg-ink text-cream/80">
+  <div class="torn-strip bg-ink" style="background-color:var(--ink)"></div>
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+    <div class="lg:col-span-2">
+      <img src="/assets/logo-300.png" alt="Takarda" class="h-10 w-auto mb-5" />
+      <p class="max-w-xs text-[15px]">A book club connecting Northern Nigeria's past, present and future — one shared page at a time.</p>
+    </div>
+    <div>
+      <h3 class="font-display text-cream text-lg mb-4">Explore</h3>
+      <ul class="space-y-2.5 text-[15px]">
+        <li><a href="/index.html" class="hover:text-cream">Home</a></li>
+        <li><a href="/index.html#about" class="hover:text-cream">About</a></li>
+        <li><a href="/blog.html" class="hover:text-cream">Blog</a></li>
+        <li><a href="/index.html#community" class="hover:text-cream">Join our community</a></li>
+        <li><a href="/donate.html" class="hover:text-cream">Eco-Reading Project</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="font-display text-cream text-lg mb-4">Say hello</h3>
+      <ul class="space-y-2.5 text-[15px]">
+        <li><a href="mailto:hello@takarda.club" class="hover:text-cream">hello@takarda.club</a></li>
+        <li>Kano, Nigeria</li>
+        <li class="flex gap-4 pt-2">
+          <a href="#" aria-label="Takarda on Instagram" class="hover:text-cream">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="#" aria-label="Takarda on X" class="hover:text-cream">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 4l16 16M20 4L4 20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </a>
+          <a href="#" aria-label="Takarda on WhatsApp" class="hover:text-cream">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3a9 9 0 00-7.8 13.5L3 21l4.7-1.2A9 9 0 1012 3z" stroke="currentColor" stroke-width="1.6"/></svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-cream/10">
+    <p class="max-w-6xl mx-auto px-5 sm:px-8 py-6 text-xs text-cream/50">© <span data-year>2026</span> Takarda Book Club. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="/js/main.js"></script>
+</body>
+</html>
