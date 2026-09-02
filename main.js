@@ -5,6 +5,26 @@
 (function () {
   "use strict";
 
+  /* Rotating hero word — crossfades through data-words on a loop.
+     Skipped entirely for prefers-reduced-motion: the word just stays
+     on whatever is already in the markup ("planted"). */
+  var rotator = document.getElementById("hero-rotator");
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (rotator && !reduceMotion) {
+    var words = (rotator.getAttribute("data-words") || "").split(",").map(function (w) { return w.trim(); }).filter(Boolean);
+    if (words.length > 1) {
+      var wordIndex = 0;
+      setInterval(function () {
+        rotator.classList.add("is-swapping");
+        setTimeout(function () {
+          wordIndex = (wordIndex + 1) % words.length;
+          rotator.textContent = words[wordIndex];
+          rotator.classList.remove("is-swapping");
+        }, 350); // matches the .word-rotate CSS transition duration
+      }, 2400);
+    }
+  }
+
   /* Footer year */
   document.querySelectorAll("[data-year]").forEach(function (el) {
     el.textContent = new Date().getFullYear();
