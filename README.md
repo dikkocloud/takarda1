@@ -36,6 +36,22 @@ as-is with no build step** — just upload the folder or point Vercel at it.
 `tailwind.config.js` / `src/input.css` / the `build:css` script are included
 so you can switch to a compiled stylesheet later if you want (see below).
 
+## Design system
+
+- **Colors** — `violet` (#6C4CF1, primary), `coral` (#FF5D8F), `lime`
+  (#D6FF3F), `sky` (#22C7B5), on a plain white background with near-black
+  `ink` (#161221) text. All defined once in `tailwind.config.js` and mirrored
+  in the inline config in each HTML file, plus as CSS custom properties in
+  `css/custom.css` — change a hex in both places to retint the whole site.
+- **Type** — Lora (display/headings), Inter (body/UI), Caveat (the hand-drawn
+  sticker badges), loaded from Google Fonts.
+- **Impact gallery lightbox** — clicking any of the 5 impact photos opens a
+  full-screen viewer with prev/next arrows, Escape-to-close, and click-outside
+  -to-close. It works with the current placeholder tiles; once you drop a real
+  `<img>` into a trigger button, the lightbox automatically shows that photo
+  enlarged instead of the placeholder text (see `js/main.js`, the
+  `render()` function, if you want to adjust how it detects images).
+
 ## Deploy to Vercel — fastest path
 
 1. Go to [vercel.com/new](https://vercel.com/new).
@@ -58,7 +74,17 @@ vercel --prod # promote to production
 
 ## Before you launch — things to swap in
 
-1. **Paystack link** — open `donate.html`, find the "Donate via Paystack"
+1. **WhatsApp community link** — every "Join our community" button (header,
+   hero, the `#community` section on the homepage, and all three footers)
+   currently points to:
+   ```html
+   https://chat.whatsapp.com/REPLACE_WITH_YOUR_INVITE_CODE
+   ```
+   Search all three HTML files for `REPLACE_WITH_YOUR_INVITE_CODE` and
+   replace it with your real group invite link (in WhatsApp:
+   **Group → Group info → Invite via link**).
+
+2. **Paystack link** — open `donate.html`, find the "Donate via Paystack"
    button, and replace the placeholder URL:
    ```html
    <a href="https://paystack.com/pay/takarda-eco-reading" ...>
@@ -68,17 +94,17 @@ vercel --prod # promote to production
    without leaving the site, swap this for Paystack's Inline/Popup JS —
    see their docs at https://paystack.com/docs/payments/accept-payments/.)
 
-2. **Impact gallery photos** — in `index.html`, search for
+3. **Impact gallery photos** — in `index.html`, search for
    `photo-placeholder`. There are five slots; replace each
    `<div class="photo-placeholder ...">…</div>` with an `<img>` tag once you
    have the real photos.
 
-3. **Team photos** — in the About section of `index.html`, each team card
+4. **Team photos** — in the About section of `index.html`, each team card
    has a colored circle with initials (`AB`, `YD`, `ZI`). Swap those for
    real headshots (`<img>`) when you have them, and update the placeholder
    names/bios.
 
-4. **Join-community form** — `js/main.js` currently only shows a client-side
+5. **Join-community form** — `js/main.js` currently only shows a client-side
    confirmation message; it doesn't send anywhere yet. Point it at a real
    provider — the easiest options are:
    - [Formspree](https://formspree.io) or [Buttondown](https://buttondown.email) —
@@ -87,19 +113,19 @@ vercel --prod # promote to production
    - Your own API route / serverless function, if you add one later.
    The newsletter form on `blog.html` needs the same treatment.
 
-5. **Stock photography** — the market, book and community photos are
+6. **Stock photography** — the market, book and community photos are
    hotlinked from Unsplash (free license, no attribution required) as
    realistic placeholders. Swap the `src` attributes for your own
    photography whenever you're ready — Northern Nigeria market days,
    actual club meet-ups, real reading corners will read much better than
    stock.
 
-6. **Copy** — placeholder founder names (Amina Bello, Yusuf Danladi) and
+7. **Copy** — placeholder founder names (Amina Bello, Yusuf Danladi) and
    strategist (Zainab Ibrahim), sample blog posts, and the impact numbers
    on the donate page (`3 reading corners`, `640+ books`, etc.) are all
    sample content. Replace with your real details before launch.
 
-7. **Email / social links** — `hello@takarda.club` and the Instagram/X/
+8. **Email / social links** — `hello@takarda.club` and the Instagram/X/
    WhatsApp icons in the footer currently point to placeholders (`#`).
    Update `href`s across all three pages.
 
