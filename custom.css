@@ -40,6 +40,19 @@ body{
 .font-display{ font-family:'Lora',ui-serif,Georgia,serif; }
 .font-mark{ font-family:'Caveat',cursive; }
 
+/* Rotating hero word — crossfades between a few resonant verbs.
+   Driven by js/main.js; degrades to a single static word if
+   prefers-reduced-motion is set (see the reduced-motion block above,
+   which also short-circuits the JS interval). */
+.word-rotate{
+  display:inline-block;
+  transition:opacity .35s ease, transform .35s ease;
+}
+.word-rotate.is-swapping{
+  opacity:0;
+  transform:translateY(6px);
+}
+
 ::selection{ background:var(--lime); color:var(--ink); }
 
 /* Visible keyboard focus everywhere */
