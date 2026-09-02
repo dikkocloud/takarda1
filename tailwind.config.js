@@ -4,13 +4,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        brick: { DEFAULT: "#C6281B", dark: "#9E1F14" },
-        clay: "#E2792A",
-        gold: "#F0B23A",
-        olive: { DEFAULT: "#7C8C2E", dark: "#5E6C1E" },
-        cream: "#F7EFDD",
-        parchment: "#EFE1C2",
-        ink: "#241407",
+        violet: { DEFAULT: "#6C4CF1", dark: "#5636C9" },
+        coral: "#FF5D8F",
+        lime: "#D6FF3F",
+        sky: { DEFAULT: "#22C7B5", dark: "#189485" },
+        cream: "#FFFFFF",
+        parchment: "#F4F1FF",
+        ink: "#161221",
       },
       fontFamily: {
         display: ["Lora", "ui-serif", "Georgia", "serif"],
