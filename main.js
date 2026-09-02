@@ -64,6 +64,74 @@
     });
   });
 
+  /* Impact gallery lightbox — click any photo to view it enlarged,
+     with keyboard (Esc / arrow keys) and prev/next support. Works
+     with the placeholder tiles as-is; once real <img> photos replace
+     the placeholders, swap the innerHTML line below for an <img src>. */
+  var lightbox = document.getElementById("lightbox");
+  var triggers = Array.prototype.slice.call(document.querySelectorAll("[data-lightbox-trigger]"));
+  if (lightbox && triggers.length) {
+    var frame = document.getElementById("lightbox-frame");
+    var frameText = document.getElementById("lightbox-frame-text");
+    var captionEl = document.getElementById("lightbox-caption");
+    var closeBtn = document.getElementById("lightbox-close");
+    var prevBtn = document.getElementById("lightbox-prev");
+    var nextBtn = document.getElementById("lightbox-next");
+    var backdrop = document.getElementById("lightbox-backdrop");
+    var currentIndex = 0;
+    var lastFocused = null;
+
+    var render = function (i) {
+      currentIndex = (i + triggers.length) % triggers.length;
+      var trigger = triggers[currentIndex];
+      var caption = trigger.getAttribute("data-caption") || "";
+      // If a real <img> has been dropped into a trigger, mirror it into the lightbox.
+      var img = trigger.querySelector("img");
+      if (img) {
+        frame.innerHTML = "";
+        var full = document.createElement("img");
+        full.src = img.src;
+        full.alt = img.alt || caption;
+        full.className = "w-full h-full object-cover rounded-lg";
+        frame.appendChild(full);
+      } else {
+        frame.innerHTML = "";
+        frame.appendChild(frameText);
+        frameText.textContent = caption ? caption + " — your image here" : "Your image here";
+      }
+      captionEl.textContent = caption;
+    };
+
+    var open = function (i) {
+      lastFocused = document.activeElement;
+      render(i);
+      lightbox.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+      closeBtn.focus();
+    };
+
+    var close = function () {
+      lightbox.classList.add("hidden");
+      document.body.style.overflow = "";
+      if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
+    };
+
+    triggers.forEach(function (trigger, i) {
+      trigger.addEventListener("click", function () { open(i); });
+    });
+    closeBtn.addEventListener("click", close);
+    backdrop.addEventListener("click", close);
+    prevBtn.addEventListener("click", function () { render(currentIndex - 1); closeBtn.focus(); });
+    nextBtn.addEventListener("click", function () { render(currentIndex + 1); closeBtn.focus(); });
+
+    document.addEventListener("keydown", function (e) {
+      if (lightbox.classList.contains("hidden")) return;
+      if (e.key === "Escape") close();
+      if (e.key === "ArrowLeft") render(currentIndex - 1);
+      if (e.key === "ArrowRight") render(currentIndex + 1);
+    });
+  }
+
   /* Blog category filter */
   var chips = document.querySelectorAll("[data-filter]");
   var posts = document.querySelectorAll("[data-category]");
