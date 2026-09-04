@@ -1,0 +1,99 @@
+/* =========================================================
+   Takarda — blog.js
+   Fetches /posts.json and renders it into blog.html's grid.
+   write.html also uses loadPosts() to merge a new post in.
+   No backend: posts.json is a plain file in the repo, and
+   "publishing" means replacing it via GitHub + a Vercel
+   redeploy (see write.html and the README).
+   ========================================================= */
+(function () {
+  "use strict";
+
+  async function loadPosts() {
+    try {
+      const res = await fetch("/posts.json", { cache: "no-store" });
+      if (!res.ok) throw new Error("posts.json responded with " + res.status);
+      const posts = await res.json();
+      if (!Array.isArray(posts)) throw new Error("posts.json is not a list");
+      return posts;
+    } catch (err) {
+      console.warn("Takarda blog: could not load posts.json —", err.message);
+      return [];
+    }
+  }
+
+  function formatDate(iso) {
+    if (!iso) return "";
+    const d = new Date(iso + "T00:00:00");
+    if (isNaN(d.getTime())) return iso;
+    return d.toLocaleDateString("en-US", { month: "long", year: "numeric" });
+  }
+
+  const CATEGORY_CLASS = { past: "text-violet", present: "text-coral", future: "text-sky" };
+  const CATEGORY_LABEL = { past: "Past", present: "Present", future: "Future" };
+
+  function escapeHTML(str) {
+    const div = document.createElement("div");
+    div.textContent = str == null ? "" : String(str);
+    return div.innerHTML;
+  }
+
+  function postCardHTML(post) {
+    const catClass = CATEGORY_CLASS[post.category] || "text-ink";
+    const catLabel = CATEGORY_LABEL[post.category] || escapeHTML(post.category);
+    return (
+      '<article data-category="' + escapeHTML(post.category) + '" class="group">' +
+        '<a href="#" class="block">' +
+          '<div class="overflow-hidden rounded-lg aspect-[4/3]">' +
+            '<img src="' + escapeHTML(post.image) + '" alt="' + escapeHTML(post.title) + '" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />' +
+          '</div>' +
+          '<p class="mt-4 text-xs font-semibold uppercase tracking-wide ' + catClass + '">' + catLabel + '</p>' +
+          '<h2 class="font-display text-xl mt-1.5 leading-snug">' + escapeHTML(post.title) + '</h2>' +
+          '<p class="mt-2 text-ink-70 text-[15px]">' + escapeHTML(post.excerpt) + '</p>' +
+          '<p class="mt-3 text-sm text-ink-45">' + escapeHTML(post.readTime) + ' · ' + escapeHTML(formatDate(post.date)) + '</p>' +
+        '</a>' +
+      '</article>'
+    );
+  }
+
+  function wireFilters() {
+    const chips = document.querySelectorAll("[data-filter]");
+    const posts = document.querySelectorAll("#post-grid [data-category]");
+    chips.forEach(function (chip) {
+      chip.addEventListener("click", function () {
+        chips.forEach(function (c) { c.setAttribute("aria-pressed", "false"); });
+        chip.setAttribute("aria-pressed", "true");
+        const value = chip.getAttribute("data-filter");
+        posts.forEach(function (post) {
+          const match = value === "all" || post.getAttribute("data-category") === value;
+          post.style.display = match ? "" : "none";
+        });
+      });
+    });
+  }
+
+  async function renderBlogGrid() {
+    const grid = document.getElementById("post-grid");
+    const empty = document.getElementById("post-grid-empty");
+    const loading = document.getElementById("post-grid-loading");
+    if (!grid) return;
+
+    const posts = await loadPosts();
+    posts.sort(function (a, b) { return (b.date || "").localeCompare(a.date || ""); });
+
+    if (loading) loading.classList.add("hidden");
+
+    if (!posts.length) {
+      if (empty) empty.classList.remove("hidden");
+      return;
+    }
+    grid.innerHTML = posts.map(postCardHTML).join("");
+    wireFilters();
+  }
+
+  window.TakardaBlog = { loadPosts: loadPosts, formatDate: formatDate };
+
+  if (document.getElementById("post-grid")) {
+    renderBlogGrid();
+  }
+})();
