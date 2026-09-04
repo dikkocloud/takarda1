@@ -1,0 +1,98 @@
+/* =========================================================
+   Takarda — write.js
+   Only loaded on write.html. Builds a new post object from
+   the form, merges it with the current posts.json (fetched
+   via blog.js's loadPosts()), and lets the person download
+   or copy the result to publish manually via GitHub.
+   ========================================================= */
+(function () {
+  "use strict";
+
+  const bodyEl = document.getElementById("p-body");
+  const readTimeEl = document.getElementById("p-readtime");
+
+  function estimateReadTime(text) {
+    const words = text.trim().split(/\s+/).filter(Boolean).length;
+    const minutes = Math.max(1, Math.round(words / 200));
+    return minutes + " min read";
+  }
+
+  if (bodyEl && readTimeEl) {
+    bodyEl.addEventListener("input", function () {
+      readTimeEl.textContent = bodyEl.value.trim() ? estimateReadTime(bodyEl.value) : "—";
+    });
+  }
+
+  function slugify(title) {
+    const base = title
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "")
+      .slice(0, 60);
+    return base || "post-" + Date.now();
+  }
+
+  const form = document.getElementById("post-form");
+  const output = document.getElementById("output");
+  const preview = document.getElementById("json-preview");
+  const downloadBtn = document.getElementById("download-btn");
+  const copyBtn = document.getElementById("copy-btn");
+  let generatedJSON = "";
+
+  if (form) {
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const title = document.getElementById("p-title").value.trim();
+      const body = bodyEl.value.trim();
+      const newPost = {
+        id: slugify(title),
+        title: title,
+        category: document.getElementById("p-category").value,
+        excerpt: document.getElementById("p-excerpt").value.trim(),
+        body: body,
+        image: document.getElementById("p-image").value.trim(),
+        readTime: estimateReadTime(body),
+        date: document.getElementById("p-date").value
+      };
+
+      const existing = window.TakardaBlog ? await window.TakardaBlog.loadPosts() : [];
+      const updated = [newPost].concat(existing.filter(function (p) { return p.id !== newPost.id; }));
+
+      generatedJSON = JSON.stringify(updated, null, 2);
+      preview.value = generatedJSON;
+      output.classList.remove("hidden");
+      output.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+
+  if (downloadBtn) {
+    downloadBtn.addEventListener("click", function () {
+      if (!generatedJSON) return;
+      const blob = new Blob([generatedJSON], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "posts.json";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+  }
+
+  if (copyBtn) {
+    copyBtn.addEventListener("click", async function () {
+      if (!generatedJSON) return;
+      try {
+        await navigator.clipboard.writeText(generatedJSON);
+        const original = copyBtn.textContent;
+        copyBtn.textContent = "Copied!";
+        setTimeout(function () { copyBtn.textContent = original; }, 1500);
+      } catch (err) {
+        preview.select();
+      }
+    });
+  }
+})();
