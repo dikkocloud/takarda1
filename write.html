@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Write a post — Takarda</title>
+<meta name="robots" content="noindex, nofollow" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          violet: { DEFAULT: '#6C4CF1', dark: '#5636C9' },
+          coral: '#FF5D8F',
+          lime: '#D6FF3F',
+          sky: { DEFAULT: '#22C7B5', dark: '#189485' },
+          cream: '#FFFFFF',
+          parchment: '#F4F1FF',
+          ink: '#161221',
+        },
+        fontFamily: {
+          display: ['Lora', 'ui-serif', 'Georgia', 'serif'],
+          sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          mark: ['Caveat', 'cursive'],
+        },
+      },
+    },
+  };
+</script>
+<link rel="stylesheet" href="/custom.css" />
+</head>
+<body class="font-sans text-ink bg-cream antialiased">
+
+<header class="border-b border-ink/10">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 flex items-center justify-between h-20">
+    <a href="/index.html" class="flex items-center gap-3">
+      <img src="/logo-300.png" alt="Takarda" class="h-11 w-auto" />
+    </a>
+    <a href="/blog.html" class="text-sm font-semibold text-violet hover:underline underline-offset-4">← Back to blog</a>
+  </div>
+</header>
+
+<main class="max-w-3xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+  <span class="badge-sticker bg-coral text-cream mb-6 inline-flex">internal tool</span>
+  <h1 class="font-display text-3xl sm:text-4xl mb-3">Write a new post</h1>
+  <p class="text-ink-70 mb-2 max-w-xl">This page isn't linked anywhere public — bookmark it. It doesn't publish by itself (this is a plain static site, no database): fill the form, generate the file, then follow the 4 steps below to actually put it live.</p>
+  <p class="text-ink-45 text-sm mb-10 max-w-xl">Nothing you type here leaves your browser until you choose to download and upload it yourself.</p>
+
+  <form id="post-form" class="space-y-6" novalidate>
+    <div>
+      <label class="block font-semibold mb-2" for="p-title">Title</label>
+      <input id="p-title" required class="w-full rounded-md border border-ink/20 px-4 py-3 focus:ring-2 focus:ring-violet focus:border-violet outline-none" placeholder="Our second reading corner is open" />
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-6">
+      <div>
+        <label class="block font-semibold mb-2" for="p-category">Category</label>
+        <select id="p-category" class="w-full rounded-md border border-ink/20 px-4 py-3 focus:ring-2 focus:ring-violet focus:border-violet outline-none">
+          <option value="past">Past</option>
+          <option value="present" selected>Present</option>
+          <option value="future">Future</option>
+        </select>
+      </div>
+      <div>
+        <label class="block font-semibold mb-2" for="p-date">Date</label>
+        <input id="p-date" type="date" required class="w-full rounded-md border border-ink/20 px-4 py-3 focus:ring-2 focus:ring-violet focus:border-violet outline-none" />
+      </div>
+    </div>
+
+    <div>
+      <label class="block font-semibold mb-2" for="p-image">Cover image URL</label>
+      <input id="p-image" type="url" required placeholder="https://images.unsplash.com/photo-..." class="w-full rounded-md border border-ink/20 px-4 py-3 focus:ring-2 focus:ring-violet focus:border-violet outline-none" />
+      <p class="text-sm text-ink-45 mt-2">Paste a direct image link — an Unsplash photo URL works well (right-click the image → Copy Image Address).</p>
+    </div>
+
+    <div>
+      <label class="block font-semibold mb-2" for="p-excerpt">Excerpt</label>
+      <textarea id="p-excerpt" required rows="2" class="w-full rounded-md border border-ink/20 px-4 py-3 focus:ring-2 focus:ring-violet focus:border-violet outline-none" placeholder="One or two sentences — this is what shows on the blog grid."></textarea>
+    </div>
+
+    <div>
+      <label class="block font-semibold mb-2" for="p-body">Full post</label>
+      <textarea id="p-body" required rows="12" class="w-full rounded-md border border-ink/20 px-4 py-3 focus:ring-2 focus:ring-violet focus:border-violet outline-none"></textarea>
+      <p class="text-sm text-ink-45 mt-2">Estimated read time: <span id="p-readtime">—</span></p>
+    </div>
+
+    <button type="submit" class="btn btn-violet">Generate updated posts.json</button>
+  </form>
+
+  <div id="output" class="hidden mt-14 pt-10 border-t border-ink/10">
+    <h2 class="font-display text-2xl mb-5">Your file is ready — 4 steps to publish</h2>
+    <ol class="space-y-3 text-ink-70 mb-8">
+      <li><strong class="text-ink">1.</strong> Click <strong>Download posts.json</strong> below.</li>
+      <li><strong class="text-ink">2.</strong> Open your GitHub repo and click on the existing <code class="bg-parchment px-1.5 py-0.5 rounded">posts.json</code> file.</li>
+      <li><strong class="text-ink">3.</strong> Click the pencil (edit) icon, delete everything inside, and paste in the new contents — or use "Add file → Upload files" and drop the downloaded file in to replace it.</li>
+      <li><strong class="text-ink">4.</strong> Scroll down and click <strong>Commit changes</strong>. Vercel redeploys automatically — refresh your blog in about a minute.</li>
+    </ol>
+    <div class="flex flex-wrap gap-3 mb-6">
+      <button id="download-btn" type="button" class="btn btn-violet">Download posts.json</button>
+      <button id="copy-btn" type="button" class="btn btn-outline">Copy to clipboard</button>
+    </div>
+    <label class="block font-semibold mb-2" for="json-preview">Preview</label>
+    <textarea id="json-preview" readonly rows="14" class="w-full rounded-md border border-ink/20 px-4 py-3 font-mono text-xs bg-parchment"></textarea>
+  </div>
+</main>
+
+<footer class="border-t border-ink/10 py-10">
+  <p class="max-w-6xl mx-auto px-5 sm:px-8 text-xs text-ink-45">© <span data-year>2026</span> Takarda Book Club.</p>
+</footer>
+
+<script src="/main.js"></script>
+<script src="/blog.js"></script>
+<script src="/write.js"></script>
+</body>
+</html>
